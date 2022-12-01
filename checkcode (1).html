@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-auth-compat.js"></script>
+</head>
+
+<body>
+    <div class="form">
+        <h1 id="HeaderTitle">Verify you are a Resident </h1>
+        <!-- Email  -->
+        <div class="email">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Write your email" />
+        </div>
+        <!-- passWord -->
+        <div class="pass">
+            <label for="secretcode">SecretCode</label>
+            <input type="secretcode" name="secretcode" id="secretcode" placeholder="Enter the Secret Code" />
+        </div>
+
+        <!-- Sign In button -->
+        <button id="vefifyCode" >Verify</button>
+    </div>
+
+    <script type = "module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyCYFBsWbxDXeS65e6AZMWCDdHzAaZy5zVU",
+            authDomain: "community-gated-system.firebaseapp.com",
+            databaseURL: "https://community-gated-system-default-rtdb.firebaseio.com",
+            projectId: "community-gated-system",
+            storageBucket: "community-gated-system.appspot.com",
+            messagingSenderId: "427254845808",
+            appId: "1:427254845808:web:f702ef0cbc24c27ad7bfb5",
+            measurementId: "G-W16BSD560P"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        firebase.initializeApp(firebaseConfig);
+        // const db = firebase.firestore();
+
+        import {
+            getFirestore, doc, getDoc, getDocs, onSnapshot, collection, query, where
+        }
+            from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
+        const db = getFirestore();
+        document.getElementById('vefifyCode').addEventListener('click', GetData)
+        async function GetData() {
+            console.log("Inside My Data");
+
+            const email = document.getElementById("email").value;
+            const secretcode = document.getElementById("secretcode").value;
+            const q = query(collection(db, "SecurityCode"), where("Email", "==", email));
+            const querySnapshot = await getDocs(q);
+            //console.log("Document data:", querySnapshot.data);
+            //console.log(querySnapshot);
+            //const querySnapshot = await getDocs(collection(db, "Visitors"));
+            //var visitor = [];
+
+
+            querySnapshot.forEach(doc => {
+                console.log("Document data:", doc.data().Email);
+                console.log("Document data:", doc.data().Secretcode);
+                console.log(email);
+                console.log(secretcode);
+                if(doc.data().Secretcode == secretcode)
+                {
+                    location.href = "index.html";
+                }
+                else{
+                    console.log("You are Not a Resident");
+                    alert("Incorrect Code or Email");
+                }
+            });
+              
+
+            
+        }
+
+    </script>
+</body>
+
+</html>

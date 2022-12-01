@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign up</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-auth-compat.js"></script>
+</head>
+
+<body>
+  <div class="form">
+    <h1 id="HeaderTitle">Registration </h1>
+    <!-- Name  -->
+    <div class="email">
+      <label for="fname">First Name</label>
+      <input type="text" name="fname" id="fname" placeholder="First Name" />
+    </div>
+    <!-- Email  -->
+    <div class="email">
+      <label for="lname">Last Name</label>
+      <input type="text" name="lname" id="lname" placeholder="Last Name" />
+    </div>
+    <!-- Email  -->
+    <div class="email">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" placeholder="Write your email" />
+    </div>
+
+    <div class="form-group" id="otherFieldDiv">
+      <label for="otherField"></label>
+      <select class="form-control" id="otherField">
+        <option>Resident</option>
+        <!-- <option>Security</option> -->
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="aptno">Address</label>
+      <input type="aptno" class="form-control" id="inputAptNo" placeholder="Apartment/House No">
+
+      <input type="buildingname" class="form-control" id="inputBuildingName" placeholder="Building Name/No">
+
+      <input type="street" class="form-control" id="autocomplete" placeholder="Street">
+
+
+      <input type="city" class="form-control" id="inputCity" placeholder="City">
+
+
+      <input type="state" class="form-control" id="inputState" placeholder="State">
+
+      <input type="zip" class="form-control" id="inputZip" placeholder="Zip">
+
+      <input type="country" class="form-control" id="inputCountry" placeholder="Country">
+    </div>
+
+    <!-- passWord -->
+    <div class="pass">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" placeholder="It should contain {A-Z,a-z,0-9,!@#$%^&*}" />
+    </div>
+    <div class="pass">
+      <label for="password">Confirm Password</label>
+      <input type="password" name="confirm_password" id="password"
+        placeholder="It should contain {A-Z,a-z,0-9,!@#$%^&*}" />
+    </div>
+
+    <!-- Sign Up button -->
+    <!-- <button id="submit-btn" onclick="signUp()" >Sign Up</button> -->
+    <!-- <button id="signUp-btn">Sign Up</button> -->
+    <button id="signUp">Sign Up</button>
+    <!-- Sign In option -->
+    <p>Already have an account ?</p>
+    <span><a href="signIn.html">Sign In</a></span>
+
+  </div>
+
+  <script src="main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
