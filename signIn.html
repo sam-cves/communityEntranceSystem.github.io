@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-auth-compat.js"></script>
+</head>
+
+<body>
+  <div class="form">
+    <div class="pass">
+      <h1 id="HeaderTitle" style="color: white">Sign In User </h1>
+      <!-- Email  -->
+      <div class="email">
+        <label for="email" style="color: white">Email</label>
+        <input type="email" name="email" id="email" placeholder="Write your email" />
+      </div>
+      <!-- passWord -->
+      <div class="pass">
+        <label for="password" style="color: white">Password</label>
+        <input type="password" name="password" id="password" placeholder="password" />
+      </div>
+      <br>
+      <br>
+      <br>
+  
+      <!-- Sign In button -->
+      <center><button id="signIn" style="color: white">Sign In</button></center>
+    </div>
+    
+  </div>
+
+  <!-- <script src="main.js"></script> -->
+  <script>
+
+    const firebaseConfig = firebase.initializeApp({
+      apiKey: "AIzaSyCYFBsWbxDXeS65e6AZMWCDdHzAaZy5zVU",
+      authDomain: "community-gated-system.firebaseapp.com",
+      databaseURL: "https://community-gated-system-default-rtdb.firebaseio.com",
+      projectId: "community-gated-system",
+      storageBucket: "community-gated-system.appspot.com",
+      messagingSenderId: "427254845808",
+      appId: "1:427254845808:web:f702ef0cbc24c27ad7bfb5",
+      measurementId: "G-W16BSD560P"
+    });
+
+    document.getElementById('signIn').addEventListener('click', signInUser)
+
+    function signInUser() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      // firebase code
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((result) => {
+          // document.write("You are Signed In")
+          location.href = "ownerHomePage.html";
+          console.log(result)
+        })
+        .catch((error) => {
+          console.log(error.code);
+          console.log(error.message)
+        });
+
+    }
+
+    
+  </script>
+</body>
+
+</html>
